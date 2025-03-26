@@ -1,0 +1,122 @@
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #84fab0, #8fd3f4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    background-image: url('/images/background.jpg');
+}
+
+  
+/* Container for form */
+.container {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+header p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Form styles */
+form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.form-group input:focus {
+    border-color: #84fab0;
+    box-shadow: 0 0 5px rgba(132, 250, 176, 0.5);
+}
+
+/* Button styles */
+/* Brighter and more vibrant button */
+.btn {
+    background: linear-gradient(135deg, #00c6ff, #0072ff); /* Brighter blue gradient */
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 20px; /* Slightly larger padding */
+    border: none;
+    border-radius: 8px; /* Rounded corners for a modern look */
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 114, 255, 0.3); /* Add a soft shadow for emphasis */
+}
+
+/* Hover effect: Increase brightness */
+.btn:hover {
+    background: linear-gradient(135deg, #0072ff, #0056cc); /* Darker shade on hover */
+    box-shadow: 0 6px 12px rgba(0, 114, 255, 0.5); /* More pronounced shadow */
+    transform: scale(1.03); /* Slight zoom effect */
+}
+
+
+/* Text link styles */
+/* Styling for the "Don't have an account?" text */
+form p {
+    font-size: 1rem; /* Increase the font size */
+    color: #444; /* Dark gray for the text */
+    margin-top: 15px;
+}
+
+/* Styling for the "Sign up" link */
+form p a {
+    color: #007BFF; /* Bright blue color for better visibility */
+    text-decoration: none;
+    font-weight: bold; /* Make it bold */
+}
+
+/* Hover effect for the "Sign up" link */
+form p a:hover {
+    text-decoration: underline; /* Underline the link on hover */
+    color: #CC0000; /* Slightly darker blue on hover */
+}
+

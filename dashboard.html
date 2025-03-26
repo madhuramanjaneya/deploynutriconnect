@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Nutri Connect</h2>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <h1>Welcome, <span id="userName"></span> 👋</h1>
+
+            <!-- Profile Section -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <h2>Your Profile</h2>
+                </div>
+                <p><strong><i class="fas fa-birthday-cake"></i> Age:</strong> <span id="userAge"></span></p>
+                <p><strong><i class="fas fa-weight"></i> Weight:</strong> <span id="userWeight"></span> kg</p>
+                <p><strong><i class="fas fa-ruler"></i> Height:</strong> <span id="userHeight"></span> cm</p>
+                <p><strong><i class="fas fa-bullseye"></i> Health Goal:</strong> <span id="userGoal"></span></p>
+            </div>
+            <button class="update-btn" onclick="fetchAndRedirect()">Update Details</button>
+
+            <!-- Filter Prompt -->
+            <button id="showFilters"><h3>Do you want to filter manually?</h3></button>
+
+            <!-- Filters Section (Hidden Initially) -->
+            <div class="filter-section" id="filterSection" style="display: none;">
+                <h2>Filter Nutritionists</h2>
+                <label for="languageFilter">Language:</label>
+                <select id="languageFilter">
+                    <option value="">Select Language</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Telugu">Telugu</option>
+                </select>
+
+                <label for="specializationFilter">Specialization:</label>
+                <select id="specializationFilter">
+                    <option value="">Select Specialization</option>
+                    <option value="muscleGain">Muscle Gain</option>
+                    <option value="generalHealth">General Health</option>
+                    <option value="nutritionBalance">Balanced Nutrition</option>
+                    <option value="diabetesManagement">Diabetes Management</option>
+                    <option value="heartHealth">Heart Health</option>
+                    <option value="gutHealth">Gut Health & Digestion</option>
+                    <option value="thyroidCare">Thyroid & Hormonal Balance</option>
+                    <option value="veganDiet">Vegan & Plant-Based Diet</option>
+                    <option value="ketoDiet">Keto & Low-Carb Diet</option>
+                    <option value="pregnancyNutrition">Pregnancy & Child Nutrition</option>
+                    <option value="sportsNutrition">Sports & Athletic Performance</option>
+                    <option value="immunityBoost">Immunity Boost</option>
+                    <option value="seniorNutrition">Senior Citizen Nutrition</option>
+                    <option value="childGrowth">Child Growth & Development</option>
+                    <option value="pcosDiet">PCOS & Women's Health</option>
+                    <option value="mentalWellness">Mental Wellness & Mood Balance</option>
+                    <option value="detoxDiet">Detox & Cleansing Diet</option>
+                    <option value="intermittentFasting">Intermittent Fasting</option>
+                    <option value="glutenFree">Gluten-Free & Allergy Management</option>
+                    <option value="postSurgeryRecovery">Post-Surgery Recovery Nutrition</option>
+                </select>
+
+                <label for="experienceFilter">Experience (years):</label>
+                <input type="number" id="experienceFilter" min="0" placeholder="Min experience">
+
+                <button id="applyFilters">Apply Filters</button>
+                <button id="resetFilters">Reset</button>
+            </div>
+
+            <!-- Nutritionists Section -->
+            <div class="nutritionists">
+                <h2>Your Preferred Nutritionists</h2>
+                <div id="nutritionistsContainer"></div>
+            </div>
+
+            <!-- Filtered Nutritionists Section -->
+            <div class="nutritionists">
+                <h2>Filtered Nutritionists</h2>
+                <div id="filteredNutritionistsContainer"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script>
+        document.getElementById("showFilters").addEventListener("click", function () {
+            document.getElementById("filterSection").style.display = "block";
+        });
+    </script>
+</body>
+</html>

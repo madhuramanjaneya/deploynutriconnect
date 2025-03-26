@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('/images/background.jpg'); /* Replace with the correct path to your image */
+  background-size: cover; /* Ensure the image covers the entire screen */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+  color: #333; /* Ensure text is readable over the background */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4CAF50;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* New addition for better visibility */
+}
+
+nav a {
+  margin-right: 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease; /* New hover effect */
+}
+
+nav a:hover {
+  color: #4CAF50; /* Slightly lighter green on hover */
+}
+
+.get-started {
+  background-color: #ff7e67;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.get-started:hover {
+  background-color: #ff5c4d;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 2rem;
+}
+
+.content-box {
+  background-color: white;
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.content-box:hover {
+  transform: translateY(-5px);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  color: #4CAF50;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+button {
+  background-color: #4CAF50; /* Green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Added transition for hover effect */
+}
+
+button:hover {
+  background-color: #45a049; /* Slightly darker green for hover */
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1.5rem 2rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-section h2 {
+  font-size: 1.2rem;
+  color: #ff7e67;
+  margin-bottom: 1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.footer-section a:hover {
+  color: #ff7e67;
+}
+
+.footer-copy {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+/* New additions for improved spacing, hover effects, and contrast */
+
+/* Hero Section Spacing */
+.hero-section {
+  margin-bottom: 50px; /* Extra padding for separation */
+}
+
+/* Footer Quick Links Contrast */
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #f5a623; /* Better contrast hover color */
+}
+
+/* Navigation Links Hover Effect */
+.nav-link {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #28a745; /* Different shade for interaction */
+}
+
+/* Button Hover Effect */
+.btn-primary {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #218838; /* Slightly darker green for hover */
+}

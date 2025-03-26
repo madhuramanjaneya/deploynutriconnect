@@ -1,0 +1,268 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+/* Hover effect */
+.sidebar ul li:hover {
+    background: #1f2c38;
+}
+
+/* Main Content */
+.dashboard-content {
+    margin-left: 270px;
+    padding: 30px;
+    width: calc(100% - 270px);
+}
+
+/* Welcome Message */
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* Profile Card */
+.profile-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.profile-card:hover {
+    transform: scale(1.02);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.profile-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ddd;
+}
+
+.profile-card p {
+    margin: 8px 0;
+}
+
+/* Nutritionists Section */
+.nutritionists {
+    margin-top: 30px;
+}
+
+/* Filter Section */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.filter-container label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.filter-container select,
+.filter-container input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.filter-container select:focus,
+.filter-container input:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+.filter-container button {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.filter-container button:hover {
+    background: #1f2c38;
+}
+
+/* Ensure Both Sections Have Same Layout */
+#preferredNutritionistsContainer,
+#filteredNutritionistsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Explicitly Set 2-Column Layout */
+@media screen and (min-width: 768px) {
+    #preferredNutritionistsContainer,
+    #filteredNutritionistsContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Nutritionist Card */
+.nutritionist-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.nutritionist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.nutritionist-card h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.nutritionist-card p {
+    font-size: 15px;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+/* Highlight experience */
+.nutritionist-card p span {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .dashboard-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px;
+    }
+
+    #preferredNutritionistsContainer, 
+    #filteredNutritionistsContainer {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-container select,
+    .filter-container input,
+    .filter-container button {
+        width: 100%;
+    }
+
+    #preferredNutritionistsContainer, 
+    #filteredNutritionistsContainer {
+        grid-template-columns: 1fr;
+    }
+} 
+
+.update-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
