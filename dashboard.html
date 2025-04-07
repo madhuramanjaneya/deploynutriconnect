@@ -11,17 +11,31 @@
     <div class="dashboard-container">
         <!-- Sidebar -->
         <aside class="sidebar">
+            
             <h2>Nutri Connect</h2>
             <ul>
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>                  
                 <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                 
             </ul>
         </aside>
+         
+          
+        
 
         <!-- Main Content -->
         <main class="dashboard-content">
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin: 20px 30px 0 0;">
+                <button id="updateDetails" style="background-color: green; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">
+                  Update Details
+                </button>
+                <button id="deleteProfileBtn" style="background-color: red; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">
+                  Delete Profile
+                </button>
+              </div>
+              
             <h1>Welcome, <span id="userName"></span> 👋</h1>
 
             <!-- Profile Section -->
@@ -34,8 +48,9 @@
                 <p><strong><i class="fas fa-ruler"></i> Height:</strong> <span id="userHeight"></span> cm</p>
                 <p><strong><i class="fas fa-bullseye"></i> Health Goal:</strong> <span id="userGoal"></span></p>
             </div>
-            <button class="update-btn" onclick="fetchAndRedirect()">Update Details</button>
-
+             
+              
+        
             <!-- Filter Prompt -->
             <button id="showFilters"><h3>Do you want to filter manually?</h3></button>
 

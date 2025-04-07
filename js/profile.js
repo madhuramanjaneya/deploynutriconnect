@@ -1,5 +1,51 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const profileForm = document.getElementById("profileForm");
+    const isUpdating = sessionStorage.getItem("isUpdatingProfile") === "true";
+
+    // If updating, prefill form with existing profile data
+    if (isUpdating) {
+        try {
+            const userId = sessionStorage.getItem("userId");
+
+            if (!userId) {
+                alert("User ID not found in session. Please log in again.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const response = await fetch(`http://localhost:5000/api/userprofile/${userId}`, {
+                method: "GET"
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                // Now prefill the form fields with `data`
+                document.getElementById("age").value = data.age || "";
+                document.getElementById("weight").value = data.weight || "";
+                document.getElementById("height").value = data.height || "";
+
+                const languages = data.languages ? data.languages.split(",") : [];
+                Array.from(document.getElementById("languages").options).forEach(option => {
+                    option.selected = languages.includes(option.value);
+                });
+
+                const conditions = data.health_conditions ? data.health_conditions.split(",") : [];
+                Array.from(document.getElementById("healthConditions").options).forEach(option => {
+                    option.selected = conditions.includes(option.value);
+                });
+
+                document.getElementById("healthGoals").value = data.health_goals || "";
+                document.getElementById("dietaryPreferences").value = data.dietary_preferences || "";
+                document.getElementById("location").value = data.location || "";
+            } else {
+                alert("Error fetching profile data.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred while loading profile data.");
+        }
+    }
 
     profileForm.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -30,8 +76,16 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         try {
-            const response = await fetch("http://localhost:5000/api/profile", {
-                method: "POST",
+            const userId = sessionStorage.getItem("userId");
+
+            const url = isUpdating
+                ? `http://localhost:5000/api/userprofile/${userId}`
+                : "http://localhost:5000/api/profile";
+
+            const method = isUpdating ? "PUT" : "POST";
+
+            const response = await fetch(url, {
+                method,
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -40,7 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 alert("Profile saved successfully!");
-                window.location.href = "login.html";
+                sessionStorage.removeItem("isUpdatingProfile");
+
+                // Redirect to dashboard if updating, or login if first-time setup
+                window.location.href = isUpdating ? "dashboard.html" : "login.html";
             } else {
                 alert("Error saving profile.");
             }

@@ -10,12 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // ✅ Display user info correctly
-    document.getElementById("userName").textContent = user.name || "N/A";
-    document.getElementById("userAge").textContent = user.age || "N/A";
-    document.getElementById("userWeight").textContent = user.weight || "N/A";
-    document.getElementById("userHeight").textContent = user.height || "N/A";
-    document.getElementById("userGoal").textContent = user.health_goals || "N/A"; 
+    // ✅ Fetch user profile from backend and display
+    fetch(`http://localhost:5000/api/userprofile/${user.id}`)
+        .then(res => res.json())
+        .then(profile => {
+            document.getElementById("userName").textContent = user.name || "N/A";
+            document.getElementById("userAge").textContent = profile.age || "N/A";
+            document.getElementById("userWeight").textContent = profile.weight || "N/A";
+            document.getElementById("userHeight").textContent = profile.height || "N/A";
+            document.getElementById("userGoal").textContent = profile.health_goals || "N/A";
+        })
+        .catch(err => {
+            console.error("Error fetching user profile:", err);
+            alert("Failed to load profile details.");
+        });
 
     // ✅ Function to fetch all nutritionists
     function fetchAllNutritionists() {
@@ -23,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById("nutritionistsContainer");
-                container.innerHTML = ""; 
+                container.innerHTML = "";
 
                 if (!data.nutritionists || data.nutritionists.length === 0) {
                     container.innerHTML = "<p>No matching nutritionists found.</p>";
@@ -66,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById("filteredNutritionistsContainer");
-            container.innerHTML = ""; // Clear previous results
-            
+            container.innerHTML = "";
+
             if (!data.nutritionists || data.nutritionists.length === 0) {
                 container.innerHTML = "<p>No nutritionists found with the selected filters.</p>";
                 return;
@@ -92,18 +100,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Reset Filters Button Click
     document.getElementById("resetFilters").addEventListener("click", function () {
-        // ✅ Clear filter input values
         document.getElementById("languageFilter").value = "";
         document.getElementById("specializationFilter").value = "";
         document.getElementById("experienceFilter").value = "";
 
-        // ✅ Clear filtered nutritionists container
         document.getElementById("filteredNutritionistsContainer").innerHTML = "";
 
-        // ✅ Fetch all nutritionists again
         fetchAllNutritionists();
     });
 
+    // ✅ Update Details Button Click
+    document.getElementById("updateDetails").addEventListener("click", function () {
+        if (user && user.id) {
+            sessionStorage.setItem("userId", user.id);
+            sessionStorage.setItem("isUpdatingProfile", "true");
+        }
+
+        window.location.href = "profile.html";
+    });
+
+    // delete profile button
+
+    document.getElementById("deleteProfileBtn").addEventListener("click", async () => {
+        const userId = sessionStorage.getItem("userId");
+      
+        if (userId && confirm("Are you sure you want to delete your profile?")) {
+          try {
+            const response = await fetch(`http://localhost:5000/api/userprofile/${userId}`, {
+              method: "DELETE",
+            });
+      
+            if (response.ok) {
+              alert("Profile deleted successfully.");
+              sessionStorage.clear();
+              window.location.href = "/index.html"; // or your login/home page
+            } else {
+              alert("Failed to delete profile.");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Something went wrong.");
+          }
+        }
+      });
+      
     // ✅ Logout
     document.getElementById("logout").addEventListener("click", () => {
         sessionStorage.clear();
