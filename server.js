@@ -33,7 +33,7 @@ app.use("/api", require("./routes/profileRoutes")); // Profile
 app.use("/api", require("./routes/signinRoutes"));  // Signin
 app.use("/api", require("./routes/nutritionistRoutes")); // Nutritionist
 app.use("/api", require("./routes/filter-nutritionists"));
-
+app.use("/api", require("./routes/consultationRoutes"));
 
 // ✅ Default Route (Optional)
 app.get("/", (req, res) => {

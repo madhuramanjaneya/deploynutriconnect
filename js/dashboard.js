@@ -48,6 +48,28 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p><strong>Specialization:</strong> ${nutritionist.specialization}</p>
                         <p><strong>Location:</strong> ${nutritionist.location}</p>
                         <p><strong>Contact:</strong> ${nutritionist.contact}</p>
+                         <!-- 👇 Book Consultation Button -->
+                     <!-- Book Consultation Button with Inline CSS -->
+    <button 
+        onclick="openConsultationForm(${nutritionist.id})"
+        style="
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        "
+        onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)'"
+    >
+        Book Consultation
+    </button>
                     `;
                     container.appendChild(card);
                 });
@@ -91,6 +113,28 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p><strong>Specialization:</strong> ${nutritionist.specialization}</p>
                     <p><strong>Location:</strong> ${nutritionist.location}</p>
                     <p><strong>Contact:</strong> ${nutritionist.contact}</p>
+                    <!-- 👇 Book Consultation Button -->
+                    <!-- Book Consultation Button with Inline CSS -->
+    <button 
+        onclick="openConsultationForm(${nutritionist.id})"
+        style="
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        "
+        onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)'"
+    >
+        Book Consultation
+    </button>
                 `;
                 container.appendChild(card);
             });
