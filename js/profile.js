@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", async function () {
     const profileForm = document.getElementById("profileForm");
-    const isUpdating = sessionStorage.getItem("isUpdatingProfile") === "true";
+    const isUpdating = localStorage.getItem("isUpdatingProfile") === "true";
 
     // If updating, prefill form with existing profile data
     if (isUpdating) {
         try {
-            const userId = sessionStorage.getItem("userId");
+            const userId = localStorage.getItem("userId");
 
             if (!userId) {
                 alert("User ID not found in session. Please log in again.");
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         };
 
         try {
-            const userId = sessionStorage.getItem("userId");
+            const userId = localStorage.getItem("userId");
 
             const url = isUpdating
                 ? `http://localhost:5000/api/userprofile/${userId}`
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             if (response.ok) {
                 alert("Profile saved successfully!");
-                sessionStorage.removeItem("isUpdatingProfile");
+                localStorage.removeItem("isUpdatingProfile");
 
                 // Redirect to dashboard if updating, or login if first-time setup
                 window.location.href = isUpdating ? "dashboard.html" : "login.html";

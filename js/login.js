@@ -37,12 +37,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (data.user) {
                 console.log("✅ Login Successful:", data.user);
-                sessionStorage.setItem("user", JSON.stringify(data.user));
+            
+                // Store full user object
+                localStorage.setItem("user", JSON.stringify(data.user));
+            
+                // ✅ Store userId separately so other pages can use it
+                localStorage.setItem("userId", data.user.id);
+            
                 window.location.href = "dashboard.html";
             } else {
                 console.error("❌ Login Failed:", data.error);
                 alert("Invalid email or password");
             }
+            
         } catch (error) {
             console.error("❌ Fetch Error:", error);
             alert("⚠ Network error. Please try again.");

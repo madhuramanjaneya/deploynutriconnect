@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../js/db"); // Database connection
+const db = require("../db"); // Database connection
 
 // ✅ Route to filter nutritionists based on user input
 router.post("/nutritionists/filter", async (req, res) => {

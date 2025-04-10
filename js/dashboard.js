@@ -1,8 +1,41 @@
+function openConsultationForm(nutritionistId) {
+    const modal = document.getElementById("appointmentModal");
+  
+    // Reset form to clear any old input
+    const form = document.getElementById("consultationForm");
+    form.reset();
+  
+    // Set nutritionist ID
+    document.getElementById("nutritionistIdInput").value = nutritionistId;
+  
+    // Show modal centered
+    modal.style.display = "flex";
+  }
+  
+  function closeConsultationForm() {
+    const modal = document.getElementById("appointmentModal");
+  
+    // Optional: reset form when closing (optional)
+    document.getElementById("consultationForm").reset();
+  
+    // Hide modal
+    modal.style.display = "none";
+  }
+  
+  // 💡 Add this at the bottom of your script or HTML file
+  // So modal doesn't appear automatically when page loads or on dashboard reload
+  window.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("appointmentModal");
+    modal.style.display = "none"; // Always hide it on initial load
+  });
+  
+  
+  
 document.addEventListener("DOMContentLoaded", function () {
     console.log("📌 Dashboard Loaded");
 
-    // ✅ Get user data from sessionStorage
-    const user = JSON.parse(sessionStorage.getItem("user"));
+    // ✅ Get user data from localStorage
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
         alert("Unauthorized! Please log in first.");
@@ -50,26 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p><strong>Contact:</strong> ${nutritionist.contact}</p>
                          <!-- 👇 Book Consultation Button -->
                      <!-- Book Consultation Button with Inline CSS -->
-    <button 
-        onclick="openConsultationForm(${nutritionist.id})"
-        style="
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        "
-        onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)'"
-        onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)'"
-    >
-        Book Consultation
-    </button>
+    <button class="book-btn" onclick="openConsultationForm(${nutritionist.id})">
+    Book Consultation
+</button>
+
+
                     `;
                     container.appendChild(card);
                 });
@@ -114,27 +132,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p><strong>Location:</strong> ${nutritionist.location}</p>
                     <p><strong>Contact:</strong> ${nutritionist.contact}</p>
                     <!-- 👇 Book Consultation Button -->
-                    <!-- Book Consultation Button with Inline CSS -->
-    <button 
-        onclick="openConsultationForm(${nutritionist.id})"
-        style="
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        "
-        onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='translateY(-2px)'"
-        onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='translateY(0)'"
-    >
-        Book Consultation
-    </button>
+                    <button class="book-btn" onclick="openConsultationForm(${nutritionist.id})">
+                              Book Consultation
+                       </button>
                 `;
                 container.appendChild(card);
             });
@@ -156,8 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // ✅ Update Details Button Click
     document.getElementById("updateDetails").addEventListener("click", function () {
         if (user && user.id) {
-            sessionStorage.setItem("userId", user.id);
-            sessionStorage.setItem("isUpdatingProfile", "true");
+            localStorage.setItem("userId", user.id);
+            localStorage.setItem("isUpdatingProfile", "true");
         }
 
         window.location.href = "profile.html";
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // delete profile button
 
     document.getElementById("deleteProfileBtn").addEventListener("click", async () => {
-        const userId = sessionStorage.getItem("userId");
+        const userId = localStorage.getItem("userId");
       
         if (userId && confirm("Are you sure you want to delete your profile?")) {
           try {
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
             if (response.ok) {
               alert("Profile deleted successfully.");
-              sessionStorage.clear();
+              localStorage.clear();
               window.location.href = "/index.html"; // or your login/home page
             } else {
               alert("Failed to delete profile.");
@@ -187,10 +187,14 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       });
+     
+
+
+
       
     // ✅ Logout
     document.getElementById("logout").addEventListener("click", () => {
-        sessionStorage.clear();
+        localStorage.clear();
         window.location.href = "login.html";
     });
 });

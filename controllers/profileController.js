@@ -1,4 +1,4 @@
-const db = require("../js/db");
+const db = require("../db");
 
 //Get profile
 

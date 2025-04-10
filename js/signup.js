@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 alert(data.message);
                 
-                // Store user details in sessionStorage (Same as login)
-                sessionStorage.setItem("user", JSON.stringify(data.user));
+                // Store user details in localStorage (Same as login)
+                localStorage.setItem("user", JSON.stringify(data.user));
 
                 window.location.href = "profile.html"; 
             } else {

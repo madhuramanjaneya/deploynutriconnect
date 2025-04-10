@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../js/db"); // ✅ Correct path
+const db = require("../db"); // ✅ Correct path
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;

@@ -1,9 +1,9 @@
-// controllers/consultationController.js
-const db = require("../js/db");
+ const db = require("../db");
 
 // Book a consultation
 const bookConsultation = async (req, res) => {
   const { user_id, nutritionist_id, date, time } = req.body;
+  console.log(req.body); // add this line
 
   try {
     // Check if slot is already booked

@@ -17,7 +17,7 @@
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="#"><i class="fas fa-user"></i> Profile</a></li> 
                 <li>
-                    <a href="appointments.html">
+                    <a href="myappointments.html">
                       <i class="fas fa-calendar-check"></i> My Appointments
                     </a>
                   </li>
@@ -116,12 +116,37 @@
             </div>
         </main>
     </div>
-
+ 
     <script src="js/dashboard.js"></script>
     <script>
         document.getElementById("showFilters").addEventListener("click", function () {
             document.getElementById("filterSection").style.display = "block";
         });
     </script>
+     
+
+
+ 
+
+<!-- Appointment Modal -->
+<div id="appointmentModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeConsultationForm()" style="float:right; cursor:pointer;">&times;</span>
+    <h3>Book Consultation</h3>
+    <form id="consultationForm">
+      <input type="hidden" id="nutritionistIdInput" name="nutritionistId" />
+      
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required><br><br>
+      
+      <label for="time">Time:</label>
+      <input type="time" id="time" name="time" required><br><br>
+      
+      <button type="submit">Book</button>
+    </form>
+  </div>
+</div>
+<script src="js/consultation.js"></script>
+  
 </body>
 </html>
