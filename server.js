@@ -28,9 +28,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 // ✅ Import & Use Routes
-app.use("/api", require("./routes/signupRoutes"));  // Signup
+app.use("/api", require("./routes/authRoutes"));
 app.use("/api", require("./routes/profileRoutes")); // Profile
-app.use("/api", require("./routes/signinRoutes"));  // Signin
 app.use("/api", require("./routes/nutritionistRoutes")); // Nutritionist
 app.use("/api", require("./routes/filter-nutritionists"));
 app.use("/api", require("./routes/consultationRoutes"));
