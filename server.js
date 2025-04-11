@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ✅ Serve Static Files (Make sure 'public' folder exists)
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // ✅ Import & Use Routes
 app.use("/api", require("./routes/authRoutes"));   //Signup and Signin
