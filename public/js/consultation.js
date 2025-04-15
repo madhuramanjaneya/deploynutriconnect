@@ -12,11 +12,15 @@ document.getElementById("consultationForm").addEventListener("submit", async fun
     return;
   }
 
+  const BASE_URL = window.location.origin.includes("localhost")
+    ? "http://localhost:5000"
+    : "https://deploynutriconnect.onrender.com";
+
   try {
     console.log("📌 Booking appointment with:");
     console.log({ user_id: userId, nutritionist_id: nutritionistId, date, time });
 
-    const res = await fetch("http://localhost:5000/api/appointments", {
+    const res = await fetch(`${BASE_URL}/api/appointments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
