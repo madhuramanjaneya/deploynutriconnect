@@ -39,8 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         console.log("🔄 Submitting signup form...");
 
+        const BASE_URL = window.location.origin.includes("localhost")
+            ? "http://localhost:5000"
+            : "https://deploynutriconnect.onrender.com";
+
         try {
-            const response = await fetch('http://localhost:5000/api/signup', { 
+            const response = await fetch(`${BASE_URL}/api/signup`, { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: fullname, email: email, password: password })
