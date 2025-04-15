@@ -8,7 +8,7 @@ const app = express();
 
 // ✅ Enable CORS for frontend communication
 app.use(cors({
-    origin: ["http://127.0.0.1:5500", "http://localhost:5500", "http://localhost:5000"], // Allow local frontend + Postman
+    origin: ["http://127.0.0.1:5500", "http://localhost:5500", "http://localhost:5000","https://deploynutriconnect.onrender.com"], // Allow local frontend + Postman
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow all necessary methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
     credentials: true
