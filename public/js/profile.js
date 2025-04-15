@@ -13,9 +13,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                 return;
             }
 
-            const response = await fetch(`http://localhost:5000/api/userprofile/${userId}`, {
-                method: "GET"
-            });
+            const BASE_URL = window.location.origin.includes("localhost")
+  ? "http://localhost:5000"
+  : "https://deploynutriconnect.onrender.com";
+
+const response = await fetch(`${BASE_URL}/api/userprofile/${userId}`, {
+  method: "GET"
+});
+
 
             if (response.ok) {
                 const data = await response.json();
@@ -75,14 +80,18 @@ document.addEventListener("DOMContentLoaded", async function () {
             location
         };
 
-        try {
-            const userId = localStorage.getItem("userId");
-
-            const url = isUpdating
-                ? `http://localhost:5000/api/userprofile/${userId}`
-                : "http://localhost:5000/api/profile";
-
-            const method = isUpdating ? "PUT" : "POST";
+        const BASE_URL = window.location.origin.includes("localhost")
+        ? "http://localhost:5000"
+        : "https://deploynutriconnect.onrender.com";
+      
+      try {
+        const userId = localStorage.getItem("userId");
+      
+        const url = isUpdating
+          ? `${BASE_URL}/api/userprofile/${userId}`
+          : `${BASE_URL}/api/profile`;
+      
+        const method = isUpdating ? "PUT" : "POST";
 
             const response = await fetch(url, {
                 method,
