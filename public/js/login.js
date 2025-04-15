@@ -25,8 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
         loginButton.disabled = true;
         loginButton.textContent = "Logging in...";
 
-        const API_URL = window.location.origin;
-
+        const API_URL = window.location.origin.includes('localhost') 
+    ? 'http://localhost:5000' 
+    : 'https://deploynutriconnect.onrender.com';
         try {
             const response = await fetch(`${API_URL}/api/login`, {
                 method: "POST",
