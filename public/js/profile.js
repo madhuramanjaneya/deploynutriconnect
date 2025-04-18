@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const profileForm = document.getElementById("profileForm");
     const isUpdating = localStorage.getItem("isUpdatingProfile") === "true";
 
-    // If updating, prefill form with existing profile data
     if (isUpdating) {
         try {
             const userId = localStorage.getItem("userId");
@@ -14,34 +13,39 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             const BASE_URL = window.location.origin.includes("localhost")
-  ? "http://localhost:5000"
-  : "https://deploynutriconnect.onrender.com";
+                ? "http://localhost:5000"
+                : "https://deploynutriconnect.onrender.com";
 
-const response = await fetch(`${BASE_URL}/api/userprofile/${userId}`, {
-  method: "GET"
-});
-
+            const response = await fetch(`${BASE_URL}/api/userprofile/${userId}`, {
+                method: "GET"
+            });
 
             if (response.ok) {
                 const data = await response.json();
 
-                // Now prefill the form fields with `data`
                 document.getElementById("age").value = data.age || "";
                 document.getElementById("weight").value = data.weight || "";
                 document.getElementById("height").value = data.height || "";
 
                 const languages = data.languages ? data.languages.split(",") : [];
                 Array.from(document.getElementById("languages").options).forEach(option => {
-                    option.selected = languages.includes(option.value);
+                    option.selected = languages.includes(option.text);
                 });
 
                 const conditions = data.health_conditions ? data.health_conditions.split(",") : [];
                 Array.from(document.getElementById("healthConditions").options).forEach(option => {
-                    option.selected = conditions.includes(option.value);
+                    option.selected = conditions.includes(option.text);
                 });
 
-                document.getElementById("healthGoals").value = data.health_goals || "";
-                document.getElementById("dietaryPreferences").value = data.dietary_preferences || "";
+                // Match the display text, not value
+                Array.from(document.getElementById("healthGoals").options).forEach(option => {
+                    if (option.text === data.health_goals) option.selected = true;
+                });
+
+                Array.from(document.getElementById("dietaryPreferences").options).forEach(option => {
+                    if (option.text === data.dietary_preferences) option.selected = true;
+                });
+
                 document.getElementById("location").value = data.location || "";
             } else {
                 alert("Error fetching profile data.");
@@ -58,10 +62,15 @@ const response = await fetch(`${BASE_URL}/api/userprofile/${userId}`, {
         const age = document.getElementById("age").value;
         const weight = document.getElementById("weight").value;
         const height = document.getElementById("height").value;
-        const languages = Array.from(document.getElementById("languages").selectedOptions).map(opt => opt.value).join(",");
-        const healthConditions = Array.from(document.getElementById("healthConditions").selectedOptions).map(opt => opt.value).join(",");
-        const healthGoals = document.getElementById("healthGoals").value;
-        const dietaryPreferences = document.getElementById("dietaryPreferences").value;
+
+        const languages = Array.from(document.getElementById("languages").selectedOptions)
+            .map(opt => opt.text).join(",");
+
+        const healthConditions = Array.from(document.getElementById("healthConditions").selectedOptions)
+            .map(opt => opt.text).join(",");
+
+        const healthGoals = document.getElementById("healthGoals").selectedOptions[0].text;
+        const dietaryPreferences = document.getElementById("dietaryPreferences").selectedOptions[0].text;
         const location = document.getElementById("location").value;
 
         if (!age || !weight || !height || !healthGoals || !dietaryPreferences) {
@@ -81,17 +90,17 @@ const response = await fetch(`${BASE_URL}/api/userprofile/${userId}`, {
         };
 
         const BASE_URL = window.location.origin.includes("localhost")
-        ? "http://localhost:5000"
-        : "https://deploynutriconnect.onrender.com";
-      
-      try {
-        const userId = localStorage.getItem("userId");
-      
-        const url = isUpdating
-          ? `${BASE_URL}/api/userprofile/${userId}`
-          : `${BASE_URL}/api/profile`;
-      
-        const method = isUpdating ? "PUT" : "POST";
+            ? "http://localhost:5000"
+            : "https://deploynutriconnect.onrender.com";
+
+        try {
+            const userId = localStorage.getItem("userId");
+
+            const url = isUpdating
+                ? `${BASE_URL}/api/userprofile/${userId}`
+                : `${BASE_URL}/api/profile`;
+
+            const method = isUpdating ? "PUT" : "POST";
 
             const response = await fetch(url, {
                 method,
@@ -105,7 +114,6 @@ const response = await fetch(`${BASE_URL}/api/userprofile/${userId}`, {
                 alert("Profile saved successfully!");
                 localStorage.removeItem("isUpdatingProfile");
 
-                // Redirect to dashboard if updating, or login if first-time setup
                 window.location.href = isUpdating ? "dashboard.html" : "login.html";
             } else {
                 alert("Error saving profile.");

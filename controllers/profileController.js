@@ -34,7 +34,7 @@ const updateUserProfile = async (req, res) => {
     try {
         const query = `
             UPDATE userprofile 
-            SET age = ?, weight = ?, height = ?, languages = ?, health_conditions = ?, health_goals = ?, dietary_preferences = ?, location = ?
+            SET age = ?, weight = ?, height = ?, languages = ?, health_conditions = ?, health_goals = ?, dietary_preferences = ?, location = ? 
             WHERE id = ?
         `;
 
@@ -52,7 +52,6 @@ const updateUserProfile = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 };
-
 // Save user profile
 const saveUserProfile = async (req, res) => {
     const {

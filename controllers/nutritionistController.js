@@ -1,6 +1,5 @@
-const db = require("../db"); // DB connection
+ const db = require("../db");
 
-// 🔹 Filter nutritionists manually using user input
 const filterNutritionists = async (req, res) => {
   try {
     const { language, specialization, experience } = req.body;
@@ -37,7 +36,6 @@ const filterNutritionists = async (req, res) => {
   }
 };
 
-// 🔹 Get nutritionists based on user profile (language + health_goals)
 const getNutritionistsBasedOnUserProfile = async (req, res) => {
   const userId = req.query.userId;
 
