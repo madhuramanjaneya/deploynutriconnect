@@ -1,4 +1,12 @@
- <h1>Nutri Connect - Web Application</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutri Connect - README</title>
+</head>
+<body>
+    <h1>Nutri Connect - Web Application</h1>
 
     <p>Nutri Connect is a web-based platform designed to connect users with nutritionists based on their health goals, dietary preferences, and other personal details. The app helps users find personalized nutrition advice tailored to their needs.</p>
 
@@ -9,3 +17,5 @@
         <li><strong>Consultation Booking:</strong> Users can book consultations with selected nutritionists based on availability.</li>
         <li><strong>Admin Panel:</strong> Admin can manage users, nutritionists, and consultations.</li>
     </ul>
+</body>
+</html>
